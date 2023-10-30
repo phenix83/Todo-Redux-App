@@ -8,7 +8,7 @@ export const AddTodoAction = (todo) => (dispatch, getState) => {
     if (!hasTodo && todo !== '') {
         dispatch({
             type: "ADD_TODO",
-            payload: [{ id: todo, todo}, ...todos],
+            payload: [{ id: todo, todo}, ...todos]
         })
     }
 };
@@ -22,4 +22,11 @@ export const RemoveTodoAction = (todo) => (dispatch, getState) => {
         type: "REMOVE_TODO",
         payload: todos.filter( t => t.id !== todo.id),
     })
-}
+};
+
+export const ClearForm = () => (dispatch) => {
+
+    dispatch({
+        type: 'CLEAR_FORM'
+    })    
+};
