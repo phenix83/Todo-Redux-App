@@ -7,9 +7,7 @@ const reducer = combineReducers({
      Todo: TodoReducer,
 });
 
-const initialState = {
-    formInput: ''
-};
+const initialState = {};
 
 const middleware = [thunk];
 

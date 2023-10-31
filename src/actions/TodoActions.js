@@ -23,10 +23,3 @@ export const RemoveTodoAction = (todo) => (dispatch, getState) => {
         payload: todos.filter( t => t.id !== todo.id),
     })
 };
-
-export const ClearForm = () => (dispatch) => {
-
-    dispatch({
-        type: 'CLEAR_FORM'
-    })    
-};

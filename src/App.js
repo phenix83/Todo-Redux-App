@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { AddTodoAction, RemoveTodoAction, ClearForm } from './actions/TodoActions';
+import { AddTodoAction, RemoveTodoAction } from './actions/TodoActions';
 
 function App() {
-  const [todo, setTodo] = useState();
+  const [todo, setTodo] = useState('');
 
   const dispatch = useDispatch();
   const Todo = useSelector((state) => state.Todo);
@@ -13,7 +13,6 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(AddTodoAction(todo));
-    dispatch(ClearForm());
     setTodo('');
   };
 
@@ -35,6 +34,7 @@ function App() {
               border: 'none',
               fontSize: 20
             }}
+            value={todo}
             onChange={(e) => setTodo(e.target.value)}
           />
           <button
@@ -46,7 +46,6 @@ function App() {
               fontSize: 20,
               marginLeft: 20
             }}
-            onClick={() => ClearForm()}
           >
             Add
           </button>
