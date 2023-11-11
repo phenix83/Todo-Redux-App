@@ -1,98 +1,30 @@
-import { useRef, useState } from 'react';
-import { connect } from 'react-redux';
-import './App.css';
-import { addTodos, removeTodos } from './reducers/TodoReducers';
+import "./App.css";
+import DisplayTodos from './components/DisplayTodos';
+import Todos from "./components/Todos";
 
-const mapStateToProps = (state) => {
-   return {
-    todos: state,
-   }
-}
+import { motion } from "framer-motion";
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTodo: (obj) => dispatch(addTodos(obj)),
-    removeTodo: (id) => dispatch(removeTodos(id)),
-  }
-}
-
-function App(props) {
-  const [todo, setTodo] = useState('');
-
-  const inputRef = useRef(true);
-
-  const changeFocus = () => {
-    inputRef.current.disabled = false;
-    inputRef.current.focus();
-  }
-
-  // const dispatch = useDispatch();
-  // const Todo = useSelector((state) => state.Todo);
-  // const { todos } = Todo;
-  
-  const handleChange = (e) => {
-    setTodo(e.target.value);
-  };
-  console.log('props from store', props);  
-
-  // const removeHandler = (t) => {
-  //   dispatch(RemoveTodoAction(t));
-  // }
-
+function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h2>What should you do?</h2>
-        <form onSubmit={handleChange}>
-          <input
-            placeholder='Add a task...'
-            style={{
-              width: 350,
-              padding: 10,
-              borderRadius: 4,
-              border: 'none',
-              fontSize: 20
-            }}
-            // value={todo}
-            onChange={(e) => handleChange(e)}
-          />
-          <button
-            // type='submit'
-            style={{
-              padding: 10,
-              borderRadius: 4,
-              border: 'none',
-              fontSize: 20,
-              marginLeft: 20
-            }}
-            onClick={() => props.addTodo({
-              id: Math.floor(Math.random()*1000),
-              item: todo,
-              completed: false,
-            })}
-          >
-            Add
-          </button>
-        </form>
-        <br/>
-        
-        <ul className='allTodos'>
-          {
-            props.todos.map((item) => {
-              return <li key={item.id }>
-                  <textarea ref={inputRef} disabled={inputRef}
-                  defaultValue={item.item}/>
-                  <button onClick={() => {changeFocus()}}>Edit</button>
-                  <button onClick={() => props.removeTodo(item.id)}>
-                    Delete
-                  </button>
-                </li>
-            })
-          }          
-        </ul>
-      </header>
+      <motion.h2
+        initial={{ y: -200 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", duration: 0.5 }}
+        whileHover={{ scale: 1.1 }}
+        >
+          What should you do?
+      </motion.h2>
+      <motion.div
+        initial={{ y: 1000 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", duration: 1 }}
+      >
+        <Todos />
+        <DisplayTodos />
+      </motion.div>
     </div>
-  );
+  )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -6,13 +6,17 @@ const addTodoReducer = createSlice({
     name: "todos",
     initialState,
     reducers: {
+        //here we will write our reducer
+        //adding todos
          addTodos: (state, action) => {
             state.push(action.payload);
             return state;
          },
+         //remove todos
          removeTodos: (state, action) => {
             return state.filter((item) => item.id !== action.payload);
          },
+         //update todos
          updateTodos: (state, action) => {
             return state.map( todo => {
                 if (todo.id === action.payload.id) {
@@ -24,26 +28,21 @@ const addTodoReducer = createSlice({
                 return todo;
             });
          },
+         //completed
+         completeTodos: (state, action) => {
+            return state.map((todo) => {
+                if (todo.id === action.payload) {
+                    return {
+                        ...todo,
+                        completed: true,
+                    };
+                }
+                return todo;
+            });
+         }
     },
 });
 
-export const {addTodos, removeTodos, updateTodos} = addTodoReducer.actions;
+export const {addTodos, removeTodos, updateTodos, completeTodos} = addTodoReducer.actions;
 
 export const reducer = addTodoReducer.reducer;
-
- 
-// export const TodoReducer = (state={todos: []}, action) => {
-//     switch (action.type) {
-//         case "ADD_TODO":
-//             return {todos: action.payload};
-            
-//         case "REMOVE_TODO":
-//             return {todos: action.payload};
-
-//         case "UPDATE_TODO":
-//             return {todos: action.payload};
-    
-//         default:
-//             return state;
-//     }
-// }
