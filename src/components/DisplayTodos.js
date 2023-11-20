@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const DisplayTodos = (props) => {
     const [sort, setSort] = useState("active");
-    const [tasks, setTasks] = useState([]);
+
     return (
         <div className="displaytodos">
             <div className="buttons">
@@ -47,14 +47,14 @@ const DisplayTodos = (props) => {
                     All
                 </motion.button>
             </div>
-            <ul>
-                You have 
+            {/* You have 
                 {
-                    !tasks.length ? "no todos"
-                    : tasks.length === 1 ? "1 todo"
-                    : tasks.length > 1 ? `${tasks.length} todos`
+                    !tasks.length ? " no tasks"
+                    : tasks.length === 1 ? " 1 task"
+                    : tasks.length > 1 ? ` ${tasks.length} tasks`
                     : null
-                }
+                } */}
+            <ul>                
                 <AnimatePresence>
                     {props.todos.length > 0 && sort === "active"
                         ? props.todos.map((item) => {

@@ -27,7 +27,7 @@ const TodoItem = (props) => {
             animate={{ x: 0, transition: {type: "spring", duration: 2}}}
             whileHover={{
                 scale: .9,
-                transition: {type: "spring", duration: .1}
+                transition: {type: "spring", duration: .3}
             }}
             exit={{
                 x: "-60vw",
