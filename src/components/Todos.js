@@ -24,8 +24,8 @@ const Todos = (props) => {
     };
 
     const add = () => {
-        if (todo === "") {
-            alert("Input is Empty");
+        if (todo === " " || todo === undefined) {
+            alert("Input is empty");
         } else {
             props.addTodo({
                 id: Math.floor(Math.random() * 1000),

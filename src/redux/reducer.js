@@ -17,26 +17,29 @@ const addTodoReducer = createSlice({
          },
          //remove todos
          removeTodos: (state, action) => {
-            const todosFromeStorage = JSON.parse(localStorage.getItem("todo"));
-            todosFromeStorage.push(action.payload);
-            localStorage.removeItem("todo");
-            return state.filter((item) => item.id !== action.payload);
-         },
+            const removingTodos = state.filter((item) => item.id !== action.payload);
+            localStorage.setItem("todo", JSON.stringify(removingTodos));
+            return removingTodos;
+          },
          //update todos
          updateTodos: (state, action) => {
-            return state.map( todo => {
-                if (todo.id === action.payload.id) {
-                    return {
-                        ...todo,
-                        item: action.payload.item,
-                    };
+            const { id, item } = action.payload;
+            const updatedTodos = state.map((todo) => {
+                if (todo.id === id) {
+                return {
+                    ...todo,
+                    item: item,
+                };
                 }
                 return todo;
             });
+
+            localStorage.setItem("todo", JSON.stringify(updatedTodos));
+            return updatedTodos;
          },
          //completed
          completeTodos: (state, action) => {
-            return state.map((todo) => {
+            const completeTodos = state.map((todo) => {
                 if (todo.id === action.payload) {
                     return {
                         ...todo,
@@ -45,6 +48,9 @@ const addTodoReducer = createSlice({
                 }
                 return todo;
             });
+
+            localStorage.setItem("todo", JSON.stringify(completeTodos));
+            return completeTodos;
          }
     },
 });

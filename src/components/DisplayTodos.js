@@ -6,9 +6,9 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const mapStateToProps = (state) => {
     return {
-     todos: state,
+        todos: state,
     }
- }
+}
  
 const mapDispatchToProps = (dispatch) => {
     return {
