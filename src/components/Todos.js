@@ -36,9 +36,13 @@ const Todos = (props) => {
         }
     };
 
+    const handleSubmit = event => {
+        event.preventDefault();
+    }
+
     // console.log("props from store", props);
     return (
-        <div className="addTodos">
+        <form className="addTodos" onSubmit={handleSubmit}>
             <input
                 type="text"
                 onChange={(e) => handleChange(e)}
@@ -46,15 +50,16 @@ const Todos = (props) => {
                 value={todo}
             />
             <motion.button
+                type='submit'
                 whileHover={{ scale: 1.1 }}
                 whileTap={{scale: 0.9}}
                 className="add-btn"
-                onClick={() => add()}
+                onClick={() => add()}                
             >
                 <GoPlus/>
             </motion.button>
             <br />
-        </div>
+        </form>
     )
 }
 
