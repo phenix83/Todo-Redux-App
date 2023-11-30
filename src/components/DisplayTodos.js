@@ -49,9 +49,9 @@ const DisplayTodos = (props) => {
             </div>
             {/* You have 
                 {
-                    !tasks.length ? " no tasks"
-                    : tasks.length === 1 ? " 1 task"
-                    : tasks.length > 1 ? ` ${tasks.length} tasks`
+                    !props.todos.length ? " no tasks"
+                    : props.todos.length === 1 ? " 1 task"
+                    : props.todos.length > 1 ? ` ${props.todos.length} tasks`
                     : null
                 } */}
             <ul>                

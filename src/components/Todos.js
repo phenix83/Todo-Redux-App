@@ -48,6 +48,7 @@ const Todos = (props) => {
                 onChange={(e) => handleChange(e)}
                 className="todo-input"
                 value={todo}
+                placeholder='Add a todo'
             />
             <motion.button
                 type='submit'
